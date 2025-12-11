@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+talosctl machineconfig patch templates/controlplane.yaml --patch @./patches/cp-1.yaml -o machine-configs/cp-1.yaml
+talosctl machineconfig patch templates/worker.yaml --patch @./patches/worker-1.yaml -o machine-configs/worker-1.yaml
+talosctl machineconfig patch templates/worker.yaml --patch @./patches/worker-2.yaml -o machine-configs/worker-2.yaml
+talosctl machineconfig patch templates/worker.yaml --patch @./patches/worker-3.yaml -o machine-configs/worker-3.yaml
