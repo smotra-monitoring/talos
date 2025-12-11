@@ -1,0 +1,4 @@
+machine-configs/
+templates/
+kube
+test_app.yaml
