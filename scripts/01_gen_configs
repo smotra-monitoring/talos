@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+talosctl gen config -o ./templates interserver https://172.16.18.34:6443
