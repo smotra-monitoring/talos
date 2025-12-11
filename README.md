@@ -1,3 +1,4 @@
 # Initiall bootstrap of the talos cluster
 
-Start running scripts in order from `./scripts/` folder
+1. Start running scripts in order from `./scripts/` folder
+2. Apply `cilium-manifests` 
