@@ -6,22 +6,6 @@ machine:
   kubelet:
     extraArgs:
       rotate-server-certificates: true
-    extraMounts:
-      - destination: /var/lib/longhorn
-        type: bind
-        source: /var/lib/longhorn
-        options:
-          - bind
-          - rshared
-          - rw
-
-  # Adding external disk
-  disks:
-    - device: /dev/sdb
-      partitions:
-        - mountpoint: /var/lib/longhorn
-          size: 0
-          # format: xfs
 
 # Required by cilium to install API Gateway
 cluster:
