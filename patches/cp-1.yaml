@@ -7,7 +7,6 @@ machine:
     extraArgs:
       rotate-server-certificates: true
 
-
 # Required by cilium to install API Gateway
 cluster:
   network:
