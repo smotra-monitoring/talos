@@ -1,0 +1,7 @@
+# Required by cilium to install API Gateway
+cluster:
+  network:
+    cni:
+      name: none
+  proxy:
+    disabled: true
