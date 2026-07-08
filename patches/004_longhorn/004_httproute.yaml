@@ -4,6 +4,8 @@ metadata:
   name: http-gui
   namespace: longhorn-system
 spec:
+  hostnames:
+  - longhorn.smotra.net
   parentRefs:
   - group: gateway.networking.k8s.io
     kind: Gateway
@@ -14,7 +16,6 @@ spec:
     - group: ""
       kind: Service
       name: longhorn-frontend
-      namespace: longhorn-system
       port: 80
       weight: 1
     matches:
