@@ -1,0 +1,62 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"gateway.networking.k8s.io/v1","kind":"Gateway","metadata":{"annotations":{},"name":"private-gateway","namespace":"ingress-gateways"},"spec":{"gatewayClassName":"cilium","listeners":[{"allowedRoutes":{"namespaces":{"from":"All"}},"name":"http","port":80,"protocol":"HTTP"}]}}
+  creationTimestamp: "2026-07-06T19:31:56Z"
+  generation: 2
+  name: private-gateway
+  namespace: ingress-gateways
+  resourceVersion: "58762044"
+  uid: c66c0437-3c0b-42e3-8e91-38a925205b40
+spec:
+  gatewayClassName: cilium
+  listeners:
+  - allowedRoutes:
+      namespaces:
+        from: All
+    name: http
+    port: 80
+    protocol: HTTP
+status:
+  addresses:
+  - type: IPAddress
+    value: 172.16.18.57
+  conditions:
+  - lastTransitionTime: "2026-07-06T19:42:59Z"
+    message: Gateway successfully scheduled
+    observedGeneration: 2
+    reason: Accepted
+    status: "True"
+    type: Accepted
+  - lastTransitionTime: "2026-07-06T19:42:59Z"
+    message: Gateway successfully reconciled
+    observedGeneration: 2
+    reason: Programmed
+    status: "True"
+    type: Programmed
+  listeners:
+  - attachedRoutes: 1
+    conditions:
+    - lastTransitionTime: "2026-07-07T03:44:20Z"
+      message: Listener Programmed
+      observedGeneration: 2
+      reason: Programmed
+      status: "True"
+      type: Programmed
+    - lastTransitionTime: "2026-07-07T03:44:20Z"
+      message: Listener Accepted
+      observedGeneration: 2
+      reason: Accepted
+      status: "True"
+      type: Accepted
+    - lastTransitionTime: "2026-07-07T03:44:20Z"
+      message: Resolved Refs
+      reason: ResolvedRefs
+      status: "True"
+      type: ResolvedRefs
+    name: http
+    supportedKinds:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
