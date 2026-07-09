@@ -7,10 +7,9 @@ spec:
   hostnames:
   - longhorn.smotra.net
   parentRefs:
-  - group: gateway.networking.k8s.io
-    kind: Gateway
-    name: private-gateway
+  - name: private-gateway
     namespace: ingress-gateways
+    sectionName: https # Crucial: only attach to the HTTPS listener
   rules:
   - backendRefs:
     - group: ""
