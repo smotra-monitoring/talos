@@ -34,6 +34,10 @@ spec:
   - name: private-gateway
     sectionName: http # Crucial: only attach to the HTTP listener
   rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /.well-known/acme-challenge/
   - filters:
     - type: RequestRedirect
       requestRedirect:
