@@ -1,0 +1,55 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: test-selfsigned
+  namespace: ingress-gateways
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: non-existing-smotra-net-cert
+  namespace: ingress-gateways
+spec:
+  dnsNames:
+    - non-existing.smotra.net
+  secretName: non-existing-smotra-net-cert-tls
+  issuerRef:
+    name: test-selfsigned
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: test-api-smotra-net-cert
+  namespace: ingress-gateways
+spec:
+  dnsNames:
+    - api.smotra.net
+  secretName: test-api-smotra-net-cert-tls
+  issuerRef:
+    name: test-selfsigned
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: test-demo-smotra-net-cert
+  namespace: ingress-gateways
+spec:
+  dnsNames:
+    - demo.smotra.net
+  secretName: test-demo-smotra-net-cert-tls
+  issuerRef:
+    name: test-selfsigned
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: test-api-webbites-dev-cert
+  namespace: ingress-gateways
+spec:
+  dnsNames:
+    - api.webbites.dev
+  secretName: test-api-webbites-dev-cert-tls
+  issuerRef:
+    name: test-selfsigned
