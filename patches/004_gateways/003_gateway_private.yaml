@@ -20,8 +20,11 @@ spec:
     protocol: HTTPS
     tls:
       mode: Terminate
+      
+      # Gateway relies on SNI.
+      # Below config only to satisfy the requirement of having at least one certificate reference
       certificateRefs:
-      - name: smotra-tls-secret
+      - name: non-existing-smotra-net-cert
 
 ---
 apiVersion: gateway.networking.k8s.io/v1

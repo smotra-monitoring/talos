@@ -3,8 +3,6 @@ kind: Gateway
 metadata:
   name: public-gateway
   namespace: ingress-gateways
-  annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
   gatewayClassName: cilium
   listeners:
@@ -23,3 +21,7 @@ spec:
     tls:
       mode: Terminate
 
+      # Gateway relies on SNI.
+      # Below config only to satisfy the requirement of having at least one certificate reference
+      certificateRefs:
+      - name: non-existing-smotra-net-cert
