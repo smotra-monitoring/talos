@@ -6,7 +6,7 @@ metadata:
 spec:
   dnsNames:
     - api.smotra.net
-  secretName: test-api-smotra-net-cert-tls
+  secretName: test-api-smotra-net
   issuerRef:
     name: test-selfsigned
 ---
@@ -18,7 +18,7 @@ metadata:
 spec:
   dnsNames:
     - demo.smotra.net
-  secretName: test-demo-smotra-net-cert-tls
+  secretName: test-demo-smotra-net
   issuerRef:
     name: test-selfsigned
 ---
@@ -30,6 +30,6 @@ metadata:
 spec:
   dnsNames:
     - api.webbites.dev
-  secretName: test-api-webbites-dev-cert-tls
+  secretName: test-api-webbites-dev
   issuerRef:
     name: test-selfsigned

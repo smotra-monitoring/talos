@@ -9,11 +9,11 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: non-existing-smotra-net-cert
+  name: dummy.invalid
   namespace: ingress-gateways
 spec:
   dnsNames:
-    - non-existing.smotra.net
-  secretName: non-existing-smotra-net-cert-tls
+    - dummy.invalid
+  secretName: dummy.invalid
   issuerRef:
     name: test-selfsigned

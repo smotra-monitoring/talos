@@ -24,4 +24,5 @@ spec:
       # Gateway relies on SNI.
       # Below config only to satisfy the requirement of having at least one certificate reference
       certificateRefs:
-      - name: non-existing-smotra-net-cert
+      - name: dummy.invalid
+      
