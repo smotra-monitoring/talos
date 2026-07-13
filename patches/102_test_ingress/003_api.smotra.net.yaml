@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: test-api-webbites-dev
+
+---
+# 2. Create the Nginx Deployment (Single Replica)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: test-api-webbites-dev
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+
+---
+# 3. Create the Service to expose the Deployment
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  namespace: test-api-webbites-dev
+spec:
+  type: ClusterIP # Use 'NodePort' or 'LoadBalancer' if you need external access
+  selector:
+    app: nginx   # This matches the label on the deployment's pods
+  ports:
+    - protocol: TCP
+      port: 80        # The port the service exposes inside the cluster
+      targetPort: 80  # The port the Nginx container is listening on
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: test-api-webbites-dev-cert
+  namespace: test-api-webbites-dev
+spec:
+  dnsNames:
+    - "*.webbites.dev"
+  secretName: test-api-webbites-dev
+  issuerRef:
+    name: test-selfsigned
+    kind: ClusterIssuer
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: test-api-webbites-dev
+  namespace: test-api-webbites-dev
+  annotations:
+    ingress.cilium.io/loadbalancer-mode: shared
+spec:
+  ingressClassName: cilium
+  tls:
+  - hosts:
+    - api.webbites.dev
+    secretName: test-api-webbites-dev
+  rules:
+  - host: api.webbites.dev
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-service
+            port:
+              number: 80
