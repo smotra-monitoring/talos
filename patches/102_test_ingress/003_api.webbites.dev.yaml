@@ -45,18 +45,18 @@ spec:
       targetPort: 80  # The port the Nginx container is listening on
 ---
 
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: test-api-webbites-dev-cert
-  namespace: test-api-webbites-dev
-spec:
-  dnsNames:
-    - "*.webbites.dev"
-  secretName: test-api-webbites-dev
-  issuerRef:
-    name: test-selfsigned
-    kind: ClusterIssuer
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: test-api-webbites-dev-cert
+#   namespace: test-api-webbites-dev
+# spec:
+#   dnsNames:
+#     - "*.webbites.dev"
+#   secretName: test-api-webbites-dev
+#   issuerRef:
+#     name: test-selfsigned
+#     kind: ClusterIssuer
 
 ---
 
@@ -66,7 +66,11 @@ metadata:
   name: test-api-webbites-dev
   namespace: test-api-webbites-dev
   annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
     ingress.cilium.io/loadbalancer-mode: shared
+    ingress.cilium.io/enforce-https: "false"
+    ingress.cilium.io/secure-backends: "false" # Force Cilium to treat the backend as plain HTTP
+    acme.cert-manager.io/http01-edit-in-place: "true"
 spec:
   ingressClassName: cilium
   tls:

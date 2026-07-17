@@ -10,10 +10,12 @@ spec:
       name: letsencrypt-production-key
     solvers:
     - http01:
-        gatewayHTTPRoute:
-          parentRefs:
-          - name: public-gateway
-            namespace: ingress-gateways
+        ingress:
+          class: cilium
+        # gatewayHTTPRoute:
+        #   parentRefs:
+        #   - name: public-gateway
+        #     namespace: ingress-gateways
 
 ---
 
@@ -29,7 +31,9 @@ spec:
       name: letsencrypt-staging-key
     solvers:
     - http01:
-        gatewayHTTPRoute:
-          parentRefs:
-          - name: public-gateway
-            namespace: ingress-gateways
+        ingress:
+          class: cilium
+        # gatewayHTTPRoute:
+        #   parentRefs:
+        #   - name: public-gateway
+        #     namespace: ingress-gateways
