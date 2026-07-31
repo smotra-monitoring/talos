@@ -5,6 +5,8 @@ metadata:
 spec:
   externalIPs: true
   loadBalancerIPs: true
+  # interfaces:
+  # - ens18
   nodeSelector:
     matchExpressions:
     - key: node-role.kubernetes.io/control-plane
